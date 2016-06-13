@@ -39,11 +39,11 @@ class Word {
         $matched = false;
 
         if (in_array($character, $this->correctCharacters)) {
-            throw new \LogicException('Already guessed correctly guessed this one!');
+            throw new \LogicException('Already correctly guessed this one!');
         }
 
         if (in_array($character, $this->incorrectCharacters)) {
-            throw new \LogicException('Already guessed incorrectly guessed this one!');
+            throw new \LogicException('Already incorrectly guessed this one!');
         }
 
         foreach (str_split($this->word) as $index => $wordCharacter) {
