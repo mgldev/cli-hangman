@@ -1,0 +1,17 @@
+{
+    "name": "michael/textgame",
+    "authors": [
+        {
+            "name": "Michael Leach",
+            "email": "michaelgeorgeleach@googlemail.com"
+        }
+    ],
+    "require": {
+        "symfony/console": "^3.1"
+    },
+    "autoload": {
+      "psr-4": {
+        "": "src/"
+      }
+    }
+}
