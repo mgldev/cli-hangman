@@ -30,15 +30,27 @@ class Word {
 
     public function guess($character) {
 
+        if (!(is_string($character) && strlen($character) == 1)) {
+            throw new \InvalidArgumentException(
+                'Character must be a single character'
+            );
+        }
+
         $matched = false;
+
+        if (in_array($character, $this->correctCharacters)) {
+            throw new \LogicException('Already guessed correctly guessed this one!');
+        }
+
+        if (in_array($character, $this->incorrectCharacters)) {
+            throw new \LogicException('Already guessed incorrectly guessed this one!');
+        }
 
         foreach (str_split($this->word) as $index => $wordCharacter) {
             if ($character == $wordCharacter) {
-                if (!in_array($character, $this->correctCharacters)) {
-                    $this->correctCharacters[] = $character;
-                }
-                $matched = true;
+                $this->correctCharacters[] = $character;
                 $this->guessedLength++;
+                $matched = true;
             }
         }
 

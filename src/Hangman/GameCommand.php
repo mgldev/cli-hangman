@@ -60,7 +60,13 @@ class GameCommand extends Command
             $helper = $this->getHelper('question');
             $question = new Question('Guess character: ', null);
             $character = $helper->ask($input, $output, $question);
-            $correct = $this->word->guess($character);
+
+            try {
+                $correct = $this->word->guess($character);
+            } catch (\Exception $ex) {
+                $output->writeln('<error>' . $ex->getMessage() . '</error>');
+                continue;
+            }
 
             if (!$correct) {
                 $this->hangman->next();
